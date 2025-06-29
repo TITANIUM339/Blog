@@ -1,15 +1,24 @@
 import { BsBoxArrowUpRight, BsImage, BsSearch } from "react-icons/bs";
-import { Form, Link, useLoaderData, useSubmit } from "react-router";
+import {
+    Form,
+    Link,
+    useLoaderData,
+    useNavigation,
+    useSubmit,
+} from "react-router";
 import Container from "../components/Container";
 import HeadingContainer from "../components/HeadingContainer";
 import Input from "../components/Input";
 import { decodeHtml, removeTags } from "../lib/utils";
 import Button from "../components/Button";
+import Spinner from "../components/Spinner";
 
 export default function Home() {
     const { posts } = useLoaderData();
 
     const submit = useSubmit();
+
+    const navigation = useNavigation();
 
     return (
         <div className="grid h-full grid-rows-[min-content_1fr]">
@@ -44,7 +53,11 @@ export default function Home() {
                 </section>
             </HeadingContainer>
             <Container>
-                {posts.length ? (
+                {navigation.state === "loading" ? (
+                    <div className="flex h-full items-center justify-center">
+                        <Spinner size={50} />
+                    </div>
+                ) : posts.length ? (
                     <ul className="grid grid-cols-1 gap-8 pt-16 pr-2 pb-16 pl-2 sm:grid-cols-2 lg:grid-cols-3">
                         {posts.map((post) => (
                             <li
@@ -66,7 +79,7 @@ export default function Home() {
                                 </div>
                                 <div className="overflow-hidden">
                                     <Link
-                                        to={`/posts/${1}`}
+                                        to={`/posts/${post.id}`}
                                         className="flex items-center justify-between text-xl font-medium hover:text-gray-700"
                                         target="_blank"
                                         rel="noopener noreferrer"
