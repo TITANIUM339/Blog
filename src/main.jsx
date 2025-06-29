@@ -3,13 +3,14 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router";
 import { loginUser, logoutUser, signupUser } from "./lib/actions";
-import { loadUser } from "./lib/loaders";
+import { loadPosts, loadUser } from "./lib/loaders";
 import Error from "./pages/Error";
 import Loading from "./pages/Loading";
 import Login from "./pages/Login";
 import Root from "./pages/Root";
 import Signup from "./pages/Signup";
 import "./styles/style.css";
+import Home from "./pages/Home";
 
 const client = new QueryClient();
 
@@ -21,6 +22,11 @@ const router = createBrowserRouter([
         hydrateFallbackElement: <Loading />,
         loader: loadUser(client),
         children: [
+            {
+                index: true,
+                element: <Home />,
+                loader: loadPosts(client),
+            },
             {
                 path: "sign-up",
                 element: <Signup />,
