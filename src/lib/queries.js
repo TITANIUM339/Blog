@@ -27,3 +27,22 @@ export function getUser() {
         },
     };
 }
+
+export function getPosts(search) {
+    return {
+        queryKey: ["posts", search],
+        async queryFn() {
+            const response = await fetch(
+                `${import.meta.env.VITE_API_URL}/posts${search ? `?search=${search}` : ""}`,
+                { mode: "cors" },
+            );
+
+            if (!response.ok) {
+                throw response;
+            }
+
+            return await response.json();
+        },
+        staleTime: 5 * 60 * 1000,
+    };
+}
