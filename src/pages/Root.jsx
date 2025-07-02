@@ -1,4 +1,4 @@
-import { BsGithub } from "react-icons/bs";
+import { BsBoxArrowUpRight, BsGithub } from "react-icons/bs";
 import { Form, Link, Outlet, useLoaderData } from "react-router";
 import { ToastContainer } from "react-toastify";
 import Button from "../components/Button";
@@ -22,6 +22,21 @@ export default function Root() {
                                 </Link>
                             </div>
                             <div className="flex gap-2">
+                                <Button
+                                    variant="secondary"
+                                    Component={Link}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    to={import.meta.env.VITE_BLOG_ADMIN_URL}
+                                    style={{
+                                        display: "flex",
+                                        alignItems: "center",
+                                        gap: 8,
+                                        color: "var(--color-gray-50)",
+                                    }}
+                                >
+                                    Manage my blogs <BsBoxArrowUpRight />
+                                </Button>
                                 {user ? (
                                     <Form
                                         method="post"
