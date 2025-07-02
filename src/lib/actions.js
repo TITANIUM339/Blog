@@ -85,8 +85,6 @@ export function logoutUser(client) {
         jwt.set();
 
         client.removeQueries({ queryKey: ["user"] });
-
-        return redirect("/");
     };
 }
 

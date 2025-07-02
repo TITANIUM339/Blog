@@ -23,7 +23,11 @@ export default function Root() {
                             </div>
                             <div className="flex gap-2">
                                 {user ? (
-                                    <Form method="post" action="/log-out">
+                                    <Form
+                                        method="post"
+                                        action="/log-out"
+                                        navigate={false}
+                                    >
                                         <Button
                                             type="submit"
                                             variant="secondary"
