@@ -46,3 +46,47 @@ export function getPosts(search) {
         staleTime: 5 * 60 * 1000,
     };
 }
+
+export function getPost(id) {
+    return {
+        queryKey: ["posts", id],
+        async queryFn() {
+            const response = await fetch(
+                `${import.meta.env.VITE_API_URL}/posts/${id}`,
+                {
+                    mode: "cors",
+                    headers: { Authorization: `Bearer ${jwt.get()}` },
+                },
+            );
+
+            if (!response.ok) {
+                throw response;
+            }
+
+            return await response.json();
+        },
+        staleTime: 10 * 60 * 1000,
+    };
+}
+
+export function getComments(postId) {
+    return {
+        queryKey: ["posts", postId, "comments"],
+        async queryFn() {
+            const response = await fetch(
+                `${import.meta.env.VITE_API_URL}/posts/${postId}/comments`,
+                {
+                    mode: "cors",
+                    headers: { Authorization: `Bearer ${jwt.get()}` },
+                },
+            );
+
+            if (!response.ok) {
+                throw response;
+            }
+
+            return await response.json();
+        },
+        staleTime: 2 * 60 * 1000,
+    };
+}
