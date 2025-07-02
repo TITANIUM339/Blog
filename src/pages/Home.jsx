@@ -1,4 +1,4 @@
-import { BsBoxArrowUpRight, BsImage, BsSearch } from "react-icons/bs";
+import { BsImage, BsSearch } from "react-icons/bs";
 import {
     Form,
     Link,
@@ -6,12 +6,12 @@ import {
     useNavigation,
     useSubmit,
 } from "react-router";
+import Button from "../components/Button";
 import Container from "../components/Container";
 import HeadingContainer from "../components/HeadingContainer";
 import Input from "../components/Input";
-import { decodeHtml, removeTags } from "../lib/utils";
-import Button from "../components/Button";
 import Spinner from "../components/Spinner";
+import { decodeHtml, removeTags } from "../lib/utils";
 
 export default function Home() {
     const { posts } = useLoaderData();
@@ -80,18 +80,13 @@ export default function Home() {
                                 <div className="overflow-hidden">
                                     <Link
                                         to={`/posts/${post.id}`}
-                                        className="flex items-center justify-between text-xl font-medium hover:text-gray-700"
-                                        target="_blank"
-                                        rel="noopener noreferrer"
+                                        className="flex items-center justify-between text-xl font-medium text-teal-700 hover:underline"
                                     >
                                         <span className="overflow-hidden text-ellipsis whitespace-nowrap">
                                             {post.title}
                                         </span>
-                                        <span>
-                                            <BsBoxArrowUpRight />
-                                        </span>
                                     </Link>
-                                    <p className="text-gray-500">
+                                    <p className="mt-2 text-gray-500">
                                         {decodeHtml(
                                             post.content.length > 100
                                                 ? `${removeTags(post.content).substring(0, 100)}...`
@@ -104,7 +99,10 @@ export default function Home() {
                                         {post.author.firstName}{" "}
                                         {post.author.lastName}
                                     </p>
-                                    <p className="text-gray-500">
+                                    <time
+                                        className="text-gray-500"
+                                        dateTime={post.createdAt}
+                                    >
                                         {new Date(
                                             post.createdAt,
                                         ).toLocaleDateString("en-US", {
@@ -112,7 +110,7 @@ export default function Home() {
                                             month: "short",
                                             day: "numeric",
                                         })}
-                                    </p>
+                                    </time>
                                 </div>
                             </li>
                         ))}
