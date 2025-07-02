@@ -89,3 +89,40 @@ export function logoutUser(client) {
         return redirect("/");
     };
 }
+
+export function postComment(client) {
+    return async ({ request, params }) => {
+        const formData = await request.formData();
+
+        const response = await fetch(
+            `${import.meta.env.VITE_API_URL}/posts/${params.postId}/comments`,
+            {
+                method: "post",
+                mode: "cors",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${jwt.get()}`,
+                },
+                body: JSON.stringify({
+                    content: formData.get("content"),
+                }),
+            },
+        );
+
+        if (response.status === 400) {
+            return { error: true };
+        }
+
+        if (!response.ok) {
+            toast("Error posting comment", { type: "error" });
+
+            return;
+        }
+
+        client.invalidateQueries({
+            queryKey: ["posts", params.postId, "comments"],
+        });
+
+        return { success: true };
+    };
+}
