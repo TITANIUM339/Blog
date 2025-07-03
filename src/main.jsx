@@ -15,36 +15,43 @@ import Post from "./pages/Post";
 
 const client = new QueryClient();
 
-const router = createBrowserRouter([
-    {
-        path: "/",
-        id: "root",
-        element: <Root />,
-        errorElement: <Error />,
-        hydrateFallbackElement: <Loading />,
-        loader: loadUser(client),
-        children: [
-            {
-                index: true,
-                element: <Home />,
-                loader: loadPosts(client),
-            },
-            {
-                path: "posts/:postId",
-                element: <Post />,
-                loader: loadPostAndComments(client),
-                action: postComment(client),
-            },
-            {
-                path: "sign-up",
-                element: <Signup />,
-                action: signupUser(client),
-            },
-            { path: "log-in", element: <Login />, action: loginUser(client) },
-            { path: "log-out", action: logoutUser(client) },
-        ],
-    },
-]);
+const router = createBrowserRouter(
+    [
+        {
+            path: "/",
+            id: "root",
+            element: <Root />,
+            errorElement: <Error />,
+            hydrateFallbackElement: <Loading />,
+            loader: loadUser(client),
+            children: [
+                {
+                    index: true,
+                    element: <Home />,
+                    loader: loadPosts(client),
+                },
+                {
+                    path: "posts/:postId",
+                    element: <Post />,
+                    loader: loadPostAndComments(client),
+                    action: postComment(client),
+                },
+                {
+                    path: "sign-up",
+                    element: <Signup />,
+                    action: signupUser(client),
+                },
+                {
+                    path: "log-in",
+                    element: <Login />,
+                    action: loginUser(client),
+                },
+                { path: "log-out", action: logoutUser(client) },
+            ],
+        },
+    ],
+    { basename: "/Blog/" },
+);
 
 createRoot(document.getElementById("root")).render(
     <StrictMode>
