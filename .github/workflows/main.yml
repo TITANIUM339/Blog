@@ -40,7 +40,7 @@ jobs:
             - name: Build
               env:
                   VITE_API_URL: "https://blog-api-glsi.onrender.com"
-                  VITE_BLOG_URL: "https://titanium339.github.io/Blog"
+                  VITE_BLOG_ADMIN_URL: "https://titanium339.github.io/Blog-admin"
               run: npm run build
             - name: Setup Pages
               uses: actions/configure-pages@v5
