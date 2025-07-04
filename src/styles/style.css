@@ -10,3 +10,74 @@
         }
     }
 }
+
+/* Post styles which are basically the same as the styles found here:
+ * https://github.com/tinymce/tinymce-dist/blob/master/skins/content/default/content.css
+ * except for a few modifications to display the posts properly
+ */
+.post,
+.post * {
+    all: revert;
+}
+.post {
+    font-family: sans-serif;
+    line-height: 1.4;
+    color: #1e2939;
+}
+.post table {
+    border-collapse: collapse;
+}
+.post table:not([cellpadding]) th,
+.post table:not([cellpadding]) td {
+    padding: 0.4rem;
+}
+.post table[border]:not([border="0"]):not([style*="border-width"]) th,
+.post table[border]:not([border="0"]):not([style*="border-width"]) td {
+    border-width: 1px;
+}
+.post table[border]:not([border="0"]):not([style*="border-style"]) th,
+.post table[border]:not([border="0"]):not([style*="border-style"]) td {
+    border-style: solid;
+}
+.post table[border]:not([border="0"]):not([style*="border-color"]) th,
+.post table[border]:not([border="0"]):not([style*="border-color"]) td {
+    border-color: #ccc;
+}
+.post figure {
+    display: table;
+    margin: 1rem auto;
+}
+.post figure figcaption {
+    color: #999;
+    display: block;
+    margin-top: 0.25rem;
+    text-align: center;
+}
+.post hr {
+    border-color: #ccc;
+    border-style: solid;
+    border-width: 1px 0 0 0;
+}
+.post code {
+    background-color: #e8e8e8;
+    border-radius: 3px;
+    padding: 0.1rem 0.2rem;
+}
+.post h1 {
+    font-size: 36pt;
+}
+.post h2 {
+    font-size: 24pt;
+}
+.post h3 {
+    font-size: 18pt;
+}
+.post h4 {
+    font-size: 14pt;
+}
+.post h5 {
+    font-size: 12pt;
+}
+.post h6 {
+    font-size: 10pt;
+}

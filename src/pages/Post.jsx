@@ -159,7 +159,7 @@ export default function Post() {
                 ) : null}
                 <hr className="mt-8 text-gray-300" />
                 <article
-                    className="mt-8"
+                    className="post mt-8"
                     dangerouslySetInnerHTML={{
                         __html: DOMPurify.sanitize(post.content),
                     }}
