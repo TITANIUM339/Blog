@@ -161,7 +161,9 @@ export default function Post() {
                 <article
                     className="post mt-8"
                     dangerouslySetInnerHTML={{
-                        __html: DOMPurify.sanitize(post.content),
+                        __html: DOMPurify.sanitize(post.content, {
+                            ADD_ATTR: ["target"],
+                        }),
                     }}
                 ></article>
                 <hr className="mt-8 text-gray-300" />
