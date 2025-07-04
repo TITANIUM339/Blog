@@ -5,13 +5,13 @@ import { createBrowserRouter, RouterProvider } from "react-router";
 import { loginUser, logoutUser, postComment, signupUser } from "./lib/actions";
 import { loadPostAndComments, loadPosts, loadUser } from "./lib/loaders";
 import Error from "./pages/Error";
+import Home from "./pages/Home";
 import Loading from "./pages/Loading";
 import Login from "./pages/Login";
+import Post from "./pages/Post";
 import Root from "./pages/Root";
 import Signup from "./pages/Signup";
 import "./styles/style.css";
-import Home from "./pages/Home";
-import Post from "./pages/Post";
 
 const client = new QueryClient();
 
