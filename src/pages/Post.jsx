@@ -136,7 +136,7 @@ export default function Post() {
 
     return (
         <div className="flex flex-col items-center p-2">
-            <div className="mt-16 mb-16 w-full max-w-[80ch]">
+            <div className="mt-16 mb-16 w-full max-w-[80ch] wrap-break-word">
                 <section>
                     <h1 className="text-4xl font-bold">{post.title}</h1>
                     <p className="mt-4 font-medium">
