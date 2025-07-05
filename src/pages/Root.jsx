@@ -12,7 +12,7 @@ export default function Root() {
             <div className="grid min-h-screen grid-rows-[min-content_1fr_min-content] bg-gray-50 text-gray-800">
                 <header className="bg-teal-800">
                     <Container>
-                        <div className="flex items-center justify-between p-2">
+                        <div className="flex flex-col gap-4 p-2 sm:flex-row sm:items-center sm:justify-between">
                             <div>
                                 <Link
                                     to="/"
@@ -21,7 +21,7 @@ export default function Root() {
                                     Blog
                                 </Link>
                             </div>
-                            <div className="flex gap-2">
+                            <div className="flex flex-wrap justify-end gap-2 self-end">
                                 <Button
                                     variant="secondary"
                                     Component={Link}
